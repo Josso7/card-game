@@ -1,4 +1,5 @@
 import { optionFormatter } from '../utils/textFormatting';
+import { LinkedList, Node } from '../utils/LinkedList/linkedList';
 const readline = require('readline');
 const r1 = readline.createInterface({
     input: process.stdin,
@@ -26,7 +27,7 @@ function pickClass(){
 function mainMenu(){
     r1.question(optionFormatter(mainMenuOptions), (answer) => {
         if(answer.toLowerCase() === 'make deck'){
-            
+
         }
         if(answer.toLowerCase() === 'battle'){
 
