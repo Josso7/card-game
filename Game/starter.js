@@ -1,15 +1,38 @@
+import { optionFormatter } from '../utils/textFormatting';
 const readline = require('readline');
 const r1 = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-r1.question('Hello please pick your class', (answer) => {
+const mainMenuOptions = {
+    'Please select an option': 0,
+    'Make Deck': 1,
+    'Battle': 2
+}
 
-    if(answer === mage){
-        console.log('You have selected mage.')
-    } else {
+function pickClass(){
+    r1.question('Hello please pick your class\n', (answer) => {
+        if(answer.toLowerCase() === 'mage'){
+            console.log('You have selected mage.')
+            r1.close();
+        } else {
+            console.log('Please select a valid class.')
+            pickClass();
+        };
+    });
+};
 
-    }
-})
-console.log('Hello, please pick your class.')
+function mainMenu(){
+    r1.question(optionFormatter(mainMenuOptions), (answer) => {
+        if(answer.toLowerCase() === 'make deck'){
+            
+        }
+        if(answer.toLowerCase() === 'battle'){
+
+        }
+
+    })
+}
+
+pickClass();
