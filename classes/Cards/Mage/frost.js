@@ -1,34 +1,23 @@
-let arcane = {
-
-};
-
-let frost = {
+const frostSpells = {
     frostbolt: {
+        name: 'Frostbolt',
         damage: 10,
         manaCost: 1,
-        effect: 'slow',
-        aoe: false
+        slow: true,        
     },
     iceBarrier: {
+        name: 'Ice Barrier',
         armor: 10,
         manaCost: 2,
         effect: 'armorGain'
     },
     frostNova: {
+        name: 'Frost Nova',
         damage: 1,
         manaCost: 5,
         effect: 'freeze',
         aoe: true
     }
-
-};
-let fire = {};
-
-class Mage {
-    constructor(){
-        this.health = 100;
-        this.mana = 20;
-    }
 }
 
-export {Mage};
+export { frostSpells };

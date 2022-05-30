@@ -1,0 +1,20 @@
+{
+  "type": "module",
+  "name": "card-game",
+  "version": "1.0.0",
+  "description": "a card game",
+  "main": "Game/starter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josso7/card-game.git"
+  },
+  "author": "Josso7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Josso7/card-game/issues"
+  },
+  "homepage": "https://github.com/Josso7/card-game#readme"
+}
