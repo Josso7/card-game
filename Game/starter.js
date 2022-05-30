@@ -1,11 +1,14 @@
 import { optionFormatter } from '../utils/textFormatting';
 import { LinkedList, Node } from '../utils/LinkedList/linkedList';
-import { constructDe}
+import { constructDeck } from '../utils/deckBuilder'
+import { getClassCards } from '../utils/cards/retrieveCards';
+
 const readline = require('readline');
 const r1 = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 let playerClass;
 const mainMenuOptions = {
     'Please select an option': 0,
@@ -30,6 +33,7 @@ function pickClass(){
 function mainMenu(){
     r1.question(optionFormatter(mainMenuOptions), (answer) => {
         if(answer.toLowerCase() === 'make deck'){
+            pickClass();
             constructDeck(playerClass)
         }
         if(answer.toLowerCase() === 'battle'){
@@ -38,5 +42,4 @@ function mainMenu(){
 
     })
 }
-
-pickClass();
+mainMenu()
