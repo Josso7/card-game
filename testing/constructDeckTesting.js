@@ -101,51 +101,78 @@ function colorResourceText(classCard) {
   if (classCard.manaCost !== undefined) return chalk.blue(classCard.manaCost);
 }
 
-function formatCardDescription(stringArr){
-    const maxLength = 30;
+function formatCardDescription(stringArr, classCard){
+    debugger;
+    const maxLength = 32;
     let currentLength = 0;
     let currentLine = '';
     let allLines = [];
-    console.log(stringArr)
+    stringArr.indexOf('damageVariable') !== - 1 ? stringArr[stringArr.indexOf('damageVariable')] = String(classCard.damage) : false;
+    // console.log(stringArr)
     for(let i = 0; i < stringArr.length; i++){
-
-        if(currentLength + stringArr[i].length < maxLength){
+        if(currentLength + stringArr[i].length <= maxLength){
             currentLine += stringArr[i];
-            currentLength += stringArr[i].length;
+            currentLength = currentLine.length;
+            if(stringArr[i + 1]){
+            if(currentLength + stringArr[i + 1].length <= maxLength) {
+                currentLine += ' ';
+                currentLength = currentLine.length;
+            }
+        }
         } else {
-            console.log(currentLine);
+            // console.log(currentLine);
             allLines.push(currentLine);
+            allLines.push('\n');
             currentLine = '';
+            currentLength = 0;
+            currentLine += stringArr[i];
+            currentLength = currentLine.length;
+            if(stringArr[i + 1]){
+            if(currentLength + stringArr[i + 1].length <= maxLength) {
+                currentLine += ' ';
+                currentLength = currentLine.length;
+            }
+        }
+            currentLength = currentLine.length;
         }
     }
-    allLines.push(currentLine);
+    if(currentLine !== '') allLines.push(currentLine);
     console.log(allLines);
     return allLines;
 }
 
 function formatCard(classCard) {
-  let formattedCard = "";
+    let formattedCard = "";
+    const maxLength = 30;
+    formattedCard += '|';
+    formattedCard += colorResourceText(classCard);
+    formattedCard += align(classCard.name, ((maxLength - classCard.name.length) % 2 === 1 ? maxLength - classCard.name.length + 1 : maxLength - classCard.name.length - 2) / 2);
+    formattedCard += align('|', ((maxLength - classCard.name.length) % 2 === 1 ? maxLength - classCard.name.length + 1 : maxLength - classCard.name.length - 2) / 2)
+    formattedCard += "\n";
 
-  formattedCard += '|';
-  formattedCard += colorResourceText(classCard);
-  formattedCard += align(classCard.name, 5);
-  formattedCard += align('|', 5)
-  formattedCard += "\n";
+    formattedCard += "\n";
 
-  // formattedCard += `${'\u0304'}`;
-  formattedCard += "\n";
+    // formattedCard += '| ';
+    const cardDescriptionArr = formatCardDescription(
+        classCard.description.split(" "),
+        classCard
+    );
+    cardDescriptionArr.map(element => {
+        if(element !== '\n'){
+            formattedCard += '|'
+            formattedCard += align(element, ((maxLength - element.length % 2) === 1 ? maxLength - element.length + 1 : maxLength - element.length) / 2);
+            formattedCard += align('|', ((maxLength - element.length) % 2 === 1 ? maxLength - element.length + 1 : maxLength - element.length) / 2);
+        } else {
+            formattedCard += element;
+        }
+    })
+    // formattedCard += '|';
+    formattedCard += "\n";
 
-  // formattedCard += '| ';
-  formattedCard += formatCardDescription(
-    classCard.description.split(" ")
-  );
-  // formattedCard += '|';
-  formattedCard += "\n";
+    // formattedCard += '';
+    formattedCard += align(classCard.type, 12);
+    // formattedCard += '|';
 
-  // formattedCard += '';
-  formattedCard += align(classCard.type, 12);
-  // formattedCard += '|';
-
-  // console.log(formattedCard);
-  return formattedCard;
+    // console.log(formattedCard);
+    return formattedCard;
 }
