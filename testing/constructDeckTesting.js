@@ -144,7 +144,8 @@ function display3CardsByLine(card1, card2, card3){
     let card3Chars = splitByNewLine(card3)
 
     for(let i = 0; i < 11; i++){
-        for(let i = 0; i < terminalLength / 4; i++){
+        //105 is length of 3 cards + spaces inbetween
+        for(let i = 0; i < (terminalLength - 105) / 2; i++){
             currentLine += ' ';
         }
         for(let char of card1Chars[i]){
