@@ -3,9 +3,9 @@ const frostSpells = {
         name: 'Frostbolt',
         damage: 10,
         manaCost: 1,
-        slow: true,   
+        slow: true,
         description: `Deal damageVariable damage to a single target.`,
-        type: 'Spell',    
+        type: 'Spell',
     },
     iceBarrier: {
         name: 'Ice Barrier',
@@ -13,7 +13,7 @@ const frostSpells = {
         manaCost: 2,
         effect: 'armorGain',
         description: `Gain 10 armor.`,
-        type: 'Spell',    
+        type: 'Spell',
     },
     frostNova: {
         name: 'Frost Nova',
@@ -22,7 +22,7 @@ const frostSpells = {
         effect: 'freeze',
         aoe: true,
         description: `Freeze all enemy minions.`,
-        type: 'Spell',    
+        type: 'Spell',
     }
 }
 

@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/Josso7/card-game#readme",
   "dependencies": {
+    "align-text": "^1.0.2",
+    "boxen": "^6.2.1",
+    "center-align": "^1.0.1",
     "chalk": "^5.0.1"
   }
 }
