@@ -20,10 +20,14 @@ listCards(classCards);
 // let splitCard = (splitByNewLine(cards[1]))
 // displayCardByLine(splitCard);
 display3CardsByLine(cards[0], cards[1], cards[2])
+
+
+//helper function to color resource cost text
 function colorResourceText(classCard) {
-  if (classCard.manaCost !== undefined) return chalk.blue(classCard.manaCost);
+  if (classCard.manaCost !== undefined) return chalk.blue.bold(classCard.manaCost);
 }
 
+//helper function to format the description of the card
 function formatCardDescription(stringArr, classCard){
     debugger;
     const maxLength = 32;
@@ -61,11 +65,13 @@ function formatCardDescription(stringArr, classCard){
     return allLines;
 }
 
+//main function to fully format a single card
 function formatCard(classCard) {
     let formattedCard = "";
     const maxLength = 30;
+    formattedCard += ' ';
     formattedCard += colorResourceText(classCard);
-    formattedCard += (align(chalk.underline(classCard.name), (maxLength - classCard.name.length - 2) / 2));
+    formattedCard += (align(chalk.underline(classCard.name), (maxLength - classCard.name.length - 3) / 2));
     formattedCard += "\n";
 
     formattedCard += "\n";
@@ -104,6 +110,7 @@ function cardsInColumn(cardsArr){
     }
 }
 
+//helper function that splits up a card by line, puts each line in an array, and returns the array containing each line
 function splitByNewLine(card){
     let lineArray = [];
     let currentLine = [];
@@ -128,13 +135,7 @@ function splitByNewLine(card){
     return lineArray;
 }
 
-function displayCardByLine(card){
-    for(let element of card){
-        console.log(element.join(''));
-    }
-}
-
-
+//helper function to display 3 cards in a row at the same level
 function display3CardsByLine(card1, card2, card3){
     // let lineArray = [];
     let terminalLength = process.stdout.columns;
@@ -144,6 +145,7 @@ function display3CardsByLine(card1, card2, card3){
     let card3Chars = splitByNewLine(card3)
 
     for(let i = 0; i < 11; i++){
+        //11 is the vertical length of card including borders
         //105 is length of 3 cards + spaces inbetween
         for(let i = 0; i < (terminalLength - 105) / 2; i++){
             currentLine += ' ';
@@ -161,5 +163,42 @@ function display3CardsByLine(card1, card2, card3){
         }
         console.log(currentLine);
         currentLine = '';
+    }
+}
+
+//helper function to dynamically display (console.log) 3 cards in a row at the same level, repeating until all cards passed in are displayed
+//accepts an array of cards, returns nothing
+function display3CardsByLine(cards){
+    const splitCardsArray = [];
+    let terminalLength = process.stdout.columns;
+    let currentLine = '';
+
+    //dynamically split all cards in array
+    for(let i = 0; i < cards.length; i++){
+        splitCardsArray.push(splitByNewLine(cards[i]))
+    }
+
+    //dynamically display card rows 3 per row
+    for(let i = 0; i < cardsArray.length; i++){
+        for(let j = 0; j < 11; j++){
+            //11 is the vertical length of card including borders
+            //105 is length of 3 cards + spaces inbetween
+            for(let j = 0; j < (terminalLength - 105) / 2; j++){
+                currentLine += ' ';
+            }
+            for(let char of card1Chars[j]){
+                currentLine += char;
+            }
+            currentLine += '   ';
+            for(let char of card2Chars[j]){
+                currentLine += char;
+            }
+            currentLine += '   ';
+            for(let char of card3Chars[j]){
+                currentLine += char;
+            }
+            console.log(currentLine);
+            currentLine = '';
+        }
     }
 }

@@ -23,6 +23,15 @@ const frostSpells = {
         aoe: true,
         description: `Freeze all enemy minions.`,
         type: 'Spell',
+    },
+    blizzard: {
+        name: 'Blizzard',
+        damage: 5,
+        manaCost: 10,
+        effect: 'freeze',
+        aoe: true,
+        description: 'Deal damageVariable damage to all minions and freeze them.',
+        type: 'Spell'
     }
 }
 
